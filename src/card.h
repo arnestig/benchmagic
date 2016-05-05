@@ -19,16 +19,48 @@
     along with benchmagic.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-#ifndef __CARDD_H__
-#define __CARD__H__
+#ifndef __CARD_H__
+#define __CARD_H__
+
+#include <string>
+
+namespace CardInfo
+{
+    enum CardType
+    {
+        BASIC_LAND  = 1,
+        LAND        = 2,
+        CREATURE    = 4,
+        ENCHANTMENT = 8,
+        INSTANT     = 16,
+        SORCERY     = 32
+    };
+
+    enum Mana
+    {
+        SWAMP,
+        PLAINS,
+        MOUNTAIN,
+        ISLAND,
+        FOREST,
+        COLORLESS,
+        PHYREXIAN
+    };
+};
 
 class Card
 {
     public:
-        Card();
+        Card( std::string name, CardInfo::CardType cardType, std::string manaCost );
         ~Card();
 
+        std::string getName() const;
+        CardInfo::CardType getCardType() const;
+
     private:
+        std::string name;
+        CardInfo::CardType cardType;
+        std::string manaCost;
 };
 
 #endif

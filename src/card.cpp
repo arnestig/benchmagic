@@ -21,7 +21,10 @@
 
 #include "card.h"
 
-Card::Card()
+Card::Card( std::string name, CardInfo::CardType cardType, std::string manaCost )
+    :   name( name ),
+        cardType( cardType ),
+        manaCost( manaCost )
 {
 }
 
@@ -29,3 +32,22 @@ Card::~Card()
 {
 }
 
+std::string Card::getName() const
+{
+    return name;
+}
+
+CardInfo::CardType Card::getCardType() const
+{
+    return cardType;
+}
+
+int Card::evaluateScore() const
+{
+    /**
+        calculate score here based on:
+        - What zone this card sits in
+        - How the other zones looks like
+        - How the mana situation is on the battlefield zone
+    
+}

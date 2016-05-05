@@ -22,6 +22,7 @@
 #ifndef __RESOURCES_H__
 #define __RESOURCES_H__
 
+#include "zone.h"
 #include <stdlib.h>
 
 class Resources
@@ -30,11 +31,16 @@ class Resources
         static Resources* Instance();
         static void DestroyInstance();
 
+        Zone* getHand();
+        Zone* getLibrary();
+
     private:
         static Resources* instance;
         Resources();
         ~Resources();
         Resources( Resources const& ) {};
+        Zone *hand;
+        Zone *library;
 };
 
 #endif

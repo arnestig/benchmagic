@@ -24,11 +24,20 @@
 Resources* Resources::instance = NULL;
 
 Resources::Resources()
+    :   hand( NULL ),
+        library( NULL )
 {
 }
 
 Resources::~Resources()
 {
+    if ( hand != NULL ) {
+        delete hand;
+    }
+
+    if ( library != NULL ) {
+        delete library;
+    }
 }
 
 void Resources::DestroyInstance()
@@ -45,3 +54,18 @@ Resources* Resources::Instance()
     return instance;
 }
 
+Zone* Resources::getHand()
+{
+    if ( hand == NULL ) {
+        hand = new Zone();
+    }
+    return hand;
+}
+
+Zone* Resources::getLibrary()
+{
+    if ( library == NULL ) {
+        library = new Zone();
+    }
+    return library;
+}
