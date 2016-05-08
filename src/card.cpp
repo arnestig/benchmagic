@@ -49,5 +49,6 @@ int Card::evaluateScore() const
         - What zone this card sits in
         - How the other zones looks like
         - How the mana situation is on the battlefield zone
+        **/
     
 }

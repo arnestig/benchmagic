@@ -172,6 +172,7 @@ int main( int argc, char *argv[] )
     hand->getCardsByType( lands, CardInfo::CardType(CardInfo::BASIC_LAND | CardInfo::LAND ) );
     std::cout << " -- Lands -- " << std::endl;
     lands.printCards();
+    TheGame->getLibrary();
 
     return 0;
 }

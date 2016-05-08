@@ -24,6 +24,9 @@
 
 #include "zone.h"
 #include <stdlib.h>
+#include <map>
+
+#define TheGame Resources::Instance()
 
 class Resources
 {
@@ -31,16 +34,24 @@ class Resources
         static Resources* Instance();
         static void DestroyInstance();
 
-        Zone* getHand();
         Zone* getLibrary();
+        Zone* getHand();
+        Zone* getBattlefield();
+        Zone* getGraveyard();
+        Zone* getExile();
 
     private:
         static Resources* instance;
         Resources();
         ~Resources();
         Resources( Resources const& ) {};
-        Zone *hand;
+        Zone* getZoneByType( ZoneType::ZoneType zoneType );
+        std::map< ZoneType::ZoneType, Zone* > zones;
         Zone *library;
+        Zone *hand;
+        Zone *battlefield;
+        Zone *graveyard;
+        Zone *exile;
 };
 
 #endif

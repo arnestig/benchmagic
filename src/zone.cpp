@@ -21,7 +21,8 @@
 
 #include "zone.h"
 
-Zone::Zone()
+Zone::Zone( ZoneType::ZoneType zoneType )
+    :   zoneType( zoneType )
 {
     struct timeval time; 
     gettimeofday(&time,NULL);

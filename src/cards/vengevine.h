@@ -19,46 +19,18 @@
     along with benchmagic.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-#ifndef __ZONE_H__
-#define __ZONE_H__
+#ifndef __VENGEVINE_H__
+#define __VENGEVINE_H__
 
-#include "card.h"
-#include <vector>
-#include <sys/time.h>
-#include <cstdlib>
-#include <algorithm>
-#include <iostream>
-#include <stdio.h>
+#include "../card.h"
 
-namespace ZoneType
-{
-    enum ZoneType
-    {
-        TEMPORARY,
-        LIBRARY,
-        HAND,
-        BATTLEFIELD,
-        GRAVEYARD,
-        EXILE
-    };
-};
-
-class Zone
+class Vengevine : public Card
 {
     public:
-        Zone( ZoneType::ZoneType zoneType = ZoneType::TEMPORARY );
-        ~Zone();
-
-        void addCard( Card* card );
-        std::vector< Card* > getCards();
-        void shuffle();
-        Card* takeTopCard();
-        void printCards();
-        void getCardsByType( Zone &zone, CardInfo::CardType cardType );
+        Vengevine();
+        ~Vengevine();
 
     private:
-        ZoneType::ZoneType zoneType;
-        std::vector< Card* > cards;
 };
 
 #endif

@@ -29,18 +29,20 @@ ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
 endif
 
 OBJFILES := $(patsubst src/%.cpp,obj/%.o,$(wildcard src/*.cpp))
+OBJFILES_CARDS := $(patsubst src/cards/%.cpp,obj/cards/%.o,$(wildcard src/cards/*.cpp))
 
 all: $(PROGNAME)
 
-$(PROGNAME): $(OBJFILES) 
-	$(CXX) -o $(PROGNAME) $(INCLUDE_DIR) $(OBJFILES) $(LDFLAGS)
+$(PROGNAME): $(OBJFILES) $(OBJFILES_CARDS)
+	$(CXX) -o $(PROGNAME) $(INCLUDE_DIR) $(OBJFILES) $(OBJFILES_CARDS) $(LDFLAGS)
 
 obj/%.o: src/%.cpp 
 	@mkdir -p obj
+	@mkdir -p obj/cards
 	$(CXX) -c $< -o $@ $(CFLAGS) $(CPPFLAGS) $(CXXFLAGS) $(GIT_DEFINE)
 
 clean:
-	rm -f $(OBJFILES) $(PROGNAME)
+	rm -f $(OBJFILES) $(OBJFILES_CARDS) $(PROGNAME)
 
 rebuild: clean all
 

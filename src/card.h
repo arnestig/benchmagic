@@ -56,6 +56,7 @@ class Card
 
         std::string getName() const;
         CardInfo::CardType getCardType() const;
+        int evaluateScore() const;
 
     private:
         std::string name;

@@ -24,19 +24,15 @@
 Resources* Resources::instance = NULL;
 
 Resources::Resources()
-    :   hand( NULL ),
-        library( NULL )
 {
 }
 
 Resources::~Resources()
 {
-    if ( hand != NULL ) {
-        delete hand;
-    }
-
-    if ( library != NULL ) {
-        delete library;
+    for( std::map< ZoneType::ZoneType, Zone* >::iterator it = zones.begin(); it != zones.end(); ++it ) {
+        if ( (*it).second != NULL ) {
+            delete (*it).second;
+        }
     }
 }
 
@@ -54,18 +50,36 @@ Resources* Resources::Instance()
     return instance;
 }
 
+Zone* Resources::getZoneByType( ZoneType::ZoneType zoneType )
+{
+    if ( zones[ zoneType ] == NULL ) {
+        zones[ zoneType ] = new Zone( zoneType );
+    }
+    return zones[ zoneType ];
+}
+
 Zone* Resources::getHand()
 {
-    if ( hand == NULL ) {
-        hand = new Zone();
-    }
-    return hand;
+    return getZoneByType( ZoneType::HAND );
 }
 
 Zone* Resources::getLibrary()
 {
-    if ( library == NULL ) {
-        library = new Zone();
-    }
-    return library;
+    return getZoneByType( ZoneType::LIBRARY );
 }
+
+Zone* Resources::getBattlefield()
+{
+    return getZoneByType( ZoneType::BATTLEFIELD );
+}
+
+Zone* Resources::getGraveyard()
+{
+    return getZoneByType( ZoneType::GRAVEYARD );
+}
+
+Zone* Resources::getExile()
+{
+    return getZoneByType( ZoneType::EXILE );
+}
+
