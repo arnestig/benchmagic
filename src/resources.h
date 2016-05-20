@@ -45,7 +45,10 @@ class Resources
         Resources();
         ~Resources();
         Resources( Resources const& ) {};
+
         Zone* getZoneByType( ZoneType::ZoneType zoneType );
+        void evaluateCards( WHAT_STEP );
+
         std::map< ZoneType::ZoneType, Zone* > zones;
         Zone *library;
         Zone *hand;
