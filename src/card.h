@@ -23,30 +23,7 @@
 #define __CARD_H__
 
 #include <string>
-
-namespace CardInfo
-{
-    enum CardType
-    {
-        BASIC_LAND  = 1,
-        LAND        = 2,
-        CREATURE    = 4,
-        ENCHANTMENT = 8,
-        INSTANT     = 16,
-        SORCERY     = 32
-    };
-
-    enum Mana
-    {
-        SWAMP,
-        PLAINS,
-        MOUNTAIN,
-        ISLAND,
-        FOREST,
-        COLORLESS,
-        PHYREXIAN
-    };
-};
+#include "types.h"
 
 class Card
 {

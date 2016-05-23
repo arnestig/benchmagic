@@ -24,6 +24,8 @@
 Resources* Resources::instance = NULL;
 
 Resources::Resources()
+    :   opponentLife( 20 ),
+        playerLife( 20 )
 {
 }
 
@@ -48,6 +50,30 @@ Resources* Resources::Instance()
         instance = new Resources();
     }
     return instance;
+}
+
+void Resources::play()
+{
+    while ( playTurn() == true ) {
+
+    }
+}
+
+bool Resources::playTurn()
+{
+    currentStep = Steps::UNTAP;
+    for ( int i = 0; i < Steps::CLEAN_UP; i++ ) {
+        currentStep = static_cast< Steps::Steps >( i );
+        std::cout << currentStep << std::endl; 
+    }
+
+    /** check if all players are alive **/
+    if ( playerLife <= 0 || opponentLife <= 0 ) {
+        return false;
+    }
+    return false;
+
+    return true;
 }
 
 Zone* Resources::getZoneByType( ZoneType::ZoneType zoneType )

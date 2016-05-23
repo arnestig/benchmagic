@@ -19,34 +19,20 @@
     along with benchmagic.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-#ifndef __ZONE_H__
-#define __ZONE_H__
+#ifndef __GRAVECRAWLER_H__
+#define __GRAVECRAWLER_H__
 
-#include "card.h"
-#include "types.h"
-#include <vector>
-#include <sys/time.h>
-#include <cstdlib>
-#include <algorithm>
-#include <iostream>
-#include <stdio.h>
+#include "../card.h"
 
-class Zone
+class Gravecrawler : public Card
 {
     public:
-        Zone( ZoneType::ZoneType zoneType = ZoneType::TEMPORARY );
-        ~Zone();
+        Gravecrawler();
+        ~Gravecrawler();
 
-        void addCard( Card* card );
-        std::vector< Card* > getCards();
-        void shuffle();
-        Card* takeTopCard();
-        void printCards();
-        void getCardsByType( Zone &zone, CardInfo::CardType cardType );
+        int evaluateScore();
 
     private:
-        ZoneType::ZoneType zoneType;
-        std::vector< Card* > cards;
 };
 
 #endif

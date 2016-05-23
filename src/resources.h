@@ -23,6 +23,7 @@
 #define __RESOURCES_H__
 
 #include "zone.h"
+#include "types.h"
 #include <stdlib.h>
 #include <map>
 
@@ -34,6 +35,7 @@ class Resources
         static Resources* Instance();
         static void DestroyInstance();
 
+        void play();
         Zone* getLibrary();
         Zone* getHand();
         Zone* getBattlefield();
@@ -47,9 +49,13 @@ class Resources
         Resources( Resources const& ) {};
 
         Zone* getZoneByType( ZoneType::ZoneType zoneType );
-        void evaluateCards( WHAT_STEP );
+        void evaluateCards();
+        bool playTurn();
 
         std::map< ZoneType::ZoneType, Zone* > zones;
+        Steps::Steps currentStep;
+        int opponentLife;
+        int playerLife;
         Zone *library;
         Zone *hand;
         Zone *battlefield;

@@ -19,34 +19,24 @@
     along with benchmagic.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-#ifndef __ZONE_H__
-#define __ZONE_H__
+#include "gravecrawler.h"
 
-#include "card.h"
-#include "types.h"
-#include <vector>
-#include <sys/time.h>
-#include <cstdlib>
-#include <algorithm>
-#include <iostream>
-#include <stdio.h>
-
-class Zone
+Gravecrawler::Gravecrawler() : Card( "Gravecrawler", CardInfo::CREATURE, CardInfo::ZOMBIE, CardInfo::CAST_FROM_GY_IF_ZOMBIE_ON_BATTLEFIELD, "B" )
 {
-    public:
-        Zone( ZoneType::ZoneType zoneType = ZoneType::TEMPORARY );
-        ~Zone();
+}
 
-        void addCard( Card* card );
-        std::vector< Card* > getCards();
-        void shuffle();
-        Card* takeTopCard();
-        void printCards();
-        void getCardsByType( Zone &zone, CardInfo::CardType cardType );
+Gravecrawler::~Gravecrawler()
+{
+}
 
-    private:
-        ZoneType::ZoneType zoneType;
-        std::vector< Card* > cards;
-};
+int Gravecrawler::evaluateScore() 
+{
+    int score;
+    //Zone returnCreatures;
+    /**Resources::Instance()->getHand()->getCardsByType( returnCreatures, CardInfo::CardType( CardInfo::BASIC_LAND | CardInfo::LAND ) );
+    if ( getCurrentZone() == ZoneType::GRAVEYARD ) {
+       score += 10; 
+    }**/
+    return 0;
+}
 
-#endif
