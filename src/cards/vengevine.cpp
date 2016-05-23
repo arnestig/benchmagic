@@ -21,7 +21,7 @@
 
 #include "vengevine.h"
 
-Vengevine::Vengevine() : Card( "Vengevine", CardInfo::CREATURE, "2GG" )
+Vengevine::Vengevine() : Card( "Vengevine" )
 {
 }
 

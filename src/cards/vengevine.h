@@ -30,6 +30,8 @@ class Vengevine : public Card
         Vengevine();
         ~Vengevine();
 
+        int evaluateScore();
+
     private:
 };
 

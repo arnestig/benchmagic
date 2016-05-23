@@ -22,6 +22,8 @@
 #ifndef __TYPES_H__
 #define __TYPES_H__
 
+#include <string>
+
 namespace CardInfo
 {
     enum CardType
@@ -73,7 +75,7 @@ namespace Steps
 {
     enum Steps
     {
-        UNTAP = 1,
+        UNTAP = 0,
         UPKEEP,
         DRAW,
         MAIN_PHASE_ONE,
@@ -85,6 +87,49 @@ namespace Steps
         MAIN_PHASE_TWO,
         END_STEP,
         CLEAN_UP
+    };
+
+    static inline std::string getStepsAsString( Steps::Steps step )
+    {
+        switch( step ) {
+            default:
+            case Steps::UNTAP:
+                return "Untap";
+                break;
+            case Steps::UPKEEP:
+                return "Upkeep";
+                break;
+            case Steps::DRAW:
+                return "Draw";
+                break;
+            case Steps::MAIN_PHASE_ONE:
+                return "Main phase 1";
+                break;
+            case Steps::BEGIN_COMBAT:
+                return "Begin combat";
+                break;
+            case Steps::DECLARE_ATTACKERS:
+                return "Declare attackers";
+                break;
+            case Steps::DECLARE_BLOCKERS:
+                return "Declare blockers";
+                break;
+            case Steps::COMBAT_DAMAGE:
+                return "Combat damage";
+                break;
+            case Steps::END_COMBAT:
+                return "End combat";
+                break;
+            case Steps::MAIN_PHASE_TWO:
+                return "Main phase 2";
+                break;
+            case Steps::END_STEP:
+                return "End step";
+                break;
+            case Steps::CLEAN_UP:
+                return "Cleanup";
+                break;
+        }
     };
 };
 

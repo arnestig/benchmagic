@@ -19,45 +19,18 @@
     along with benchmagic.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-#ifndef __CARD_H__
-#define __CARD_H__
+#ifndef __FOREST_H__
+#define __FOREST_H__
 
-#include <string>
-#include <iostream>
-#include "types.h"
+#include "../card.h"
 
-class Card
+class Forest : public Card, public Land
 {
     public:
-        Card( std::string name );
-        ~Card();
-
-        std::string getName() const;
-        CardInfo::CardType getCardType() const;
-        CardInfo::SuperType getCardSuperType() const;
-        CardInfo::Ability getCardAbility() const;
-        ZoneType::ZoneType getCurrentZone() const;
-        bool tap();
-        bool untap();
+        Forest();
+        ~Forest();
 
     private:
-        ZoneType::ZoneType currentZoneType;
-        std::string name;
-        bool tapped;
-        CardInfo::CardType cardType;
-        CardInfo::SuperType superType;
-        CardInfo::Ability cardAbility;;
-        std::string manaCost;
-};
-
-class Land
-{
-    public:
-        Land( CardInfo::Mana manaType );
-        ~Land();
-
-    private:
-        CardInfo::Mana manaType;
 };
 
 #endif

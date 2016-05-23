@@ -21,22 +21,11 @@
 
 #include "gravecrawler.h"
 
-Gravecrawler::Gravecrawler() : Card( "Gravecrawler", CardInfo::CREATURE, CardInfo::ZOMBIE, CardInfo::CAST_FROM_GY_IF_ZOMBIE_ON_BATTLEFIELD, "B" )
+Gravecrawler::Gravecrawler() : Card( "Gravecrawler" )
 {
 }
 
 Gravecrawler::~Gravecrawler()
 {
-}
-
-int Gravecrawler::evaluateScore() 
-{
-    int score;
-    //Zone returnCreatures;
-    /**Resources::Instance()->getHand()->getCardsByType( returnCreatures, CardInfo::CardType( CardInfo::BASIC_LAND | CardInfo::LAND ) );
-    if ( getCurrentZone() == ZoneType::GRAVEYARD ) {
-       score += 10; 
-    }**/
-    return 0;
 }
 

@@ -35,6 +35,7 @@ Zone::~Zone()
 
 void Zone::addCard( Card* card )
 {
+    std::cout << "Added " << card->getName() << " to " << getZoneName() << std::endl;
     cards.push_back( card );
 }
 
@@ -57,8 +58,34 @@ Card* Zone::takeTopCard()
 
 void Zone::printCards()
 {
+    std::cout << " - Cards in " << getZoneName() << std::endl;
     for ( std::vector< Card* >::iterator it = cards.begin(); it != cards.end(); ++it ) {
         std::cout << (*it)->getName() << std::endl;
+    }
+}
+
+std::string Zone::getZoneName()
+{
+    switch( zoneType ) {
+        default:
+        case ZoneType::TEMPORARY:
+            return "Temporary";
+            break;
+        case ZoneType::LIBRARY:
+            return "Library";
+            break;
+        case ZoneType::HAND:
+            return "Hand";
+            break;
+        case ZoneType::BATTLEFIELD:
+            return "Battlefield";
+            break;
+        case ZoneType::GRAVEYARD:
+            return "Graveyard";
+            break;
+        case ZoneType::EXILE:
+            return "Exile";
+            break;
     }
 }
 
@@ -66,6 +93,24 @@ void Zone::getCardsByType( Zone &zone, CardInfo::CardType cardType )
 {
     for ( std::vector< Card* >::iterator it = cards.begin(); it != cards.end(); ++it ) {
         if ( ( (*it)->getCardType() & cardType ) ) {
+            zone.addCard( (*it ) );
+        }
+    }
+}
+
+void Zone::getCardsBySuperType( Zone &zone, CardInfo::SuperType superType )
+{
+    for ( std::vector< Card* >::iterator it = cards.begin(); it != cards.end(); ++it ) {
+        if ( ( (*it)->getCardSuperType() & superType ) ) {
+            zone.addCard( (*it ) );
+        }
+    }
+}
+
+void Zone::getCardsByAbility( Zone &zone, CardInfo::Ability cardAbility )
+{
+    for ( std::vector< Card* >::iterator it = cards.begin(); it != cards.end(); ++it ) {
+        if ( ( (*it)->getCardAbility() & cardAbility ) ) {
             zone.addCard( (*it ) );
         }
     }

@@ -43,8 +43,11 @@ class Zone
         Card* takeTopCard();
         void printCards();
         void getCardsByType( Zone &zone, CardInfo::CardType cardType );
+        void getCardsBySuperType( Zone &zone, CardInfo::SuperType superType );
+        void getCardsByAbility( Zone &zone, CardInfo::Ability cardAbility );
 
     private:
+        std::string getZoneName();
         ZoneType::ZoneType zoneType;
         std::vector< Card* > cards;
 };

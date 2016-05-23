@@ -24,7 +24,8 @@
 Resources* Resources::instance = NULL;
 
 Resources::Resources()
-    :   opponentLife( 20 ),
+    :   currentTurn( 1 ),
+        opponentLife( 20 ),
         playerLife( 20 )
 {
 }
@@ -54,6 +55,8 @@ Resources* Resources::Instance()
 
 void Resources::play()
 {
+    getLibrary()->shuffle();
+    drawCards( 7 );
     while ( playTurn() == true ) {
 
     }
@@ -61,18 +64,66 @@ void Resources::play()
 
 bool Resources::playTurn()
 {
+    playedMana = false;
     currentStep = Steps::UNTAP;
     for ( int i = 0; i < Steps::CLEAN_UP; i++ ) {
         currentStep = static_cast< Steps::Steps >( i );
-        std::cout << currentStep << std::endl; 
+        std::cout << " = Current step " << Steps::getStepsAsString( currentStep ) << std::endl; 
+        switch( currentStep ) {
+            case Steps::UNTAP:
+            {
+                std::vector< Card* > cards = getBattlefield()->getCards();
+                for( std::vector< Card* >::iterator it = cards.begin(); it != cards.end(); ++it ) {
+                    (*it)->untap();
+                }
+            }
+            break;
+            case Steps::UPKEEP:
+                // nothing for now
+                break;
+            case Steps::DRAW:
+            {
+                // here we have to decide if we want to dredge or not
+                drawCards( 1 );
+            }
+            break;
+            case Steps::MAIN_PHASE_ONE:
+                // should we play mana?
+                // should we play a spell?
+                break;
+            case Steps::BEGIN_COMBAT:
+                break;
+            case Steps::DECLARE_ATTACKERS:
+                break;
+            case Steps::DECLARE_BLOCKERS:
+                break;
+            case Steps::COMBAT_DAMAGE:
+                break;
+            case Steps::END_COMBAT:
+                break;
+            case Steps::MAIN_PHASE_TWO:
+                break;
+            case Steps::END_STEP:
+                break;
+            case Steps::CLEAN_UP:
+                break;
+        }
     }
 
     /** check if all players are alive **/
-    if ( playerLife <= 0 || opponentLife <= 0 ) {
+    if ( playerLife <= 0 ) {
+        std::cout << "We're dead at turn " << currentTurn << std::endl;
         return false;
     }
-    return false;
 
+    if ( opponentLife <= 0 ) {
+        std::cout << "Opponent dead at turn " << currentTurn << std::endl;
+        return false;
+    }
+
+    playerLife -= 5;
+
+    currentTurn++;
     return true;
 }
 
@@ -109,3 +160,11 @@ Zone* Resources::getExile()
     return getZoneByType( ZoneType::EXILE );
 }
 
+void Resources::drawCards( int numOfCards )
+{
+   Zone *hand = Resources::Instance()->getHand();
+   Zone *library = Resources::Instance()->getLibrary();
+   for ( int i = 0; i < numOfCards; i++ ) {
+       hand->addCard( library->takeTopCard() ); 
+   }
+}

@@ -80,99 +80,30 @@ void parseArguments( int argc, char *argv[] )
     }
 }
 
-void mulligan()
-{
-    //...
-}
-
-void drawCard( int numOfCards )
-{
-   Zone *hand = Resources::Instance()->getHand();
-   Zone *library = Resources::Instance()->getLibrary();
-   for ( int i = 0; i < numOfCards; i++ ) {
-       hand->addCard( library->takeTopCard() ); 
-   }
-}
-
 int main( int argc, char *argv[] )
 {
     // parse command line arguments
     parseArguments( argc, argv );
 
     Zone *library = Resources::Instance()->getLibrary();
-    Zone *hand = Resources::Instance()->getHand();
-    /** dredgevine **/
-    library->addCard( new Card( "Insolent Neonate", CardInfo::CREATURE, "R" ) );
-    library->addCard( new Card( "Insolent Neonate", CardInfo::CREATURE, "R" ) );
-    library->addCard( new Card( "Insolent Neonate", CardInfo::CREATURE, "R" ) );
-    library->addCard( new Card( "Insolent Neonate", CardInfo::CREATURE, "R" ) );
-    library->addCard( new Card( "Vengevine", CardInfo::CREATURE, "2GG" ) );
-    library->addCard( new Card( "Vengevine", CardInfo::CREATURE, "2GG" ) );
-    library->addCard( new Card( "Vengevine", CardInfo::CREATURE, "2GG" ) );
-    library->addCard( new Card( "Vengevine", CardInfo::CREATURE, "2GG" ) );
-    library->addCard( new Card( "Lotleth Troll", CardInfo::CREATURE, "BG" ) );
-    library->addCard( new Card( "Lotleth Troll", CardInfo::CREATURE, "BG" ) );
-    library->addCard( new Card( "Lotleth Troll", CardInfo::CREATURE, "BG" ) );
-    library->addCard( new Card( "Lotleth Troll", CardInfo::CREATURE, "BG" ) );
-    library->addCard( new Card( "Bloodghast", CardInfo::CREATURE, "BB" ) );
-    library->addCard( new Card( "Bloodghast", CardInfo::CREATURE, "BB" ) );
-    library->addCard( new Card( "Bloodghast", CardInfo::CREATURE, "BB" ) );
-    library->addCard( new Card( "Bloodghast", CardInfo::CREATURE, "BB" ) );
-    library->addCard( new Card( "Satyr Wayfinder", CardInfo::CREATURE, "1G" ) );
-    library->addCard( new Card( "Satyr Wayfinder", CardInfo::CREATURE, "1G" ) );
-    library->addCard( new Card( "Satyr Wayfinder", CardInfo::CREATURE, "1G" ) );
-    library->addCard( new Card( "Golgari Grave-Troll", CardInfo::CREATURE, "4G" ) );
-    library->addCard( new Card( "Golgari Grave-Troll", CardInfo::CREATURE, "4G" ) );
-    library->addCard( new Card( "Golgari Grave-Troll", CardInfo::CREATURE, "4G" ) );
-    library->addCard( new Card( "Golgari Grave-Troll", CardInfo::CREATURE, "4G" ) );
-    library->addCard( new Card( "Prized Amalgam", CardInfo::CREATURE, "1UB" ) );
-    library->addCard( new Card( "Prized Amalgam", CardInfo::CREATURE, "1UB" ) );
-    library->addCard( new Card( "Prized Amalgam", CardInfo::CREATURE, "1UB" ) );
-    library->addCard( new Card( "Prized Amalgam", CardInfo::CREATURE, "1UB" ) );
-    library->addCard( new Card( "Gurmag Angler", CardInfo::CREATURE, "6B" ) );
-    library->addCard( new Card( "Gurmag Angler", CardInfo::CREATURE, "6B" ) );
-    library->addCard( new Card( "Gurmag Angler", CardInfo::CREATURE, "6B" ) );
-    library->addCard( new Card( "Gurmag Angler", CardInfo::CREATURE, "6B" ) );
-    library->addCard( new Card( "Murderous Cut", CardInfo::INSTANT, "4B" ) );
-    library->addCard( new Card( "Murderous Cut", CardInfo::INSTANT, "4B" ) );
-    library->addCard( new Card( "Murderous Cut", CardInfo::INSTANT, "4B" ) );
-    library->addCard( new Card( "Abrupt Decay", CardInfo::INSTANT, "BG" ) );
-    library->addCard( new Card( "Abrupt Decay", CardInfo::INSTANT, "BG" ) );
-    library->addCard( new Card( "Abrupt Decay", CardInfo::INSTANT, "BG" ) );
-    library->addCard( new Card( "Faithless Looting", CardInfo::SORCERY, "R" ) );
-    library->addCard( new Card( "Faithless Looting", CardInfo::SORCERY, "R" ) );
-    library->addCard( new Card( "Faithless Looting", CardInfo::SORCERY, "R" ) );
-    library->addCard( new Card( "Faithless Looting", CardInfo::SORCERY, "R" ) );
-    library->addCard( new Card( "Forest", CardInfo::BASIC_LAND, "" ) );
-    library->addCard( new Card( "Swamp", CardInfo::BASIC_LAND, "" ) );
-    library->addCard( new Card( "Blackcleave Cliffs", CardInfo::LAND, "" ) );
-    library->addCard( new Card( "Blackcleave Cliffs", CardInfo::LAND, "" ) );
-    library->addCard( new Card( "Blackcleave Cliffs", CardInfo::LAND, "" ) );
-    library->addCard( new Card( "Blackcleave Cliffs", CardInfo::LAND, "" ) );
-    library->addCard( new Card( "Bloodstained Mire", CardInfo::LAND, "" ) );
-    library->addCard( new Card( "Bloodstained Mire", CardInfo::LAND, "" ) );
-    library->addCard( new Card( "Bloodstained Mire", CardInfo::LAND, "" ) );
-    library->addCard( new Card( "Bloodstained Mire", CardInfo::LAND, "" ) );
-    library->addCard( new Card( "Wooded Foothills", CardInfo::LAND, "" ) );
-    library->addCard( new Card( "Wooded Foothills", CardInfo::LAND, "" ) );
-    library->addCard( new Card( "Wooded Foothills", CardInfo::LAND, "" ) );
-    library->addCard( new Card( "Wooded Foothills", CardInfo::LAND, "" ) );
-    library->addCard( new Card( "Overgrown Tomb", CardInfo::LAND, "" ) );
-    library->addCard( new Card( "Overgrown Tomb", CardInfo::LAND, "" ) );
-    library->addCard( new Card( "Overgrown Tomb", CardInfo::LAND, "" ) );
-    library->addCard( new Card( "Overgrown Tomb", CardInfo::LAND, "" ) );
-    library->addCard( new Card( "Blood Crypt", CardInfo::LAND, "" ) );
-    library->addCard( new Card( "Blood Crypt", CardInfo::LAND, "" ) );
-    library->shuffle();
+    library->addCard( new Gravecrawler() );
+    library->addCard( new Gravecrawler() );
+    library->addCard( new Gravecrawler() );
+    library->addCard( new Gravecrawler() );
+    library->addCard( new Vengevine() );
+    library->addCard( new Vengevine() );
+    library->addCard( new Vengevine() );
+    library->addCard( new Vengevine() );
+    library->addCard( new Forest() );
+    library->addCard( new Forest() );
+    library->addCard( new Forest() );
+    library->addCard( new Forest() );
+    library->addCard( new Forest() );
+    library->addCard( new Forest() );
+    library->addCard( new Forest() );
+    library->addCard( new Forest() );
 
-    drawCard( 7 );
-    hand->printCards();
-
-    Zone lands;
-    hand->getCardsByType( lands, CardInfo::CardType(CardInfo::BASIC_LAND | CardInfo::LAND ) );
-    std::cout << " -- Lands -- " << std::endl;
-    lands.printCards();
-    TheGame->getLibrary();
+    Resources::Instance()->play();
 
     return 0;
 }

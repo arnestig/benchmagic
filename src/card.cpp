@@ -21,10 +21,9 @@
 
 #include "card.h"
 
-Card::Card( std::string name, CardInfo::CardType cardType, std::string manaCost )
+Card::Card( std::string name )
     :   name( name ),
-        cardType( cardType ),
-        manaCost( manaCost )
+        tapped( false )
 {
 }
 
@@ -42,13 +41,50 @@ CardInfo::CardType Card::getCardType() const
     return cardType;
 }
 
-int Card::evaluateScore() const
+CardInfo::SuperType Card::getCardSuperType() const
 {
-    /**
-        calculate score here based on:
-        - What zone this card sits in
-        - How the other zones looks like
-        - How the mana situation is on the battlefield zone
-        **/
-    
+    return superType;
 }
+
+CardInfo::Ability Card::getCardAbility() const
+{
+   return cardAbility;
+}
+
+ZoneType::ZoneType Card::getCurrentZone() const
+{
+    return currentZoneType;
+}
+
+bool Card::tap()
+{
+    if ( tapped == true ) {
+        return false;
+    }
+    std::cout << "Tapping " << getName() << std::endl;
+    return (tapped = true);
+}
+
+bool Card::untap()
+{
+    /** perhaps check condition here based on active effects **/
+    if ( 0 /** ableToUntap() == false **/ ) {
+        return false;
+    }
+
+    if ( tapped == true ) {
+        std::cout << "Untapping " << getName() << std::endl;
+    }
+
+    return ! (tapped = false);
+}
+
+Land::Land( CardInfo::Mana manaType )
+    :   manaType( manaType )
+{
+}
+
+Land::~Land()
+{
+}
+

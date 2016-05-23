@@ -30,8 +30,6 @@ class Gravecrawler : public Card
         Gravecrawler();
         ~Gravecrawler();
 
-        int evaluateScore();
-
     private:
 };
 
