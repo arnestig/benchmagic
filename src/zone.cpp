@@ -39,6 +39,19 @@ void Zone::addCard( Card* card )
     cards.push_back( card );
 }
 
+void Zone::playCard( Card* card, Zone* battlefield )
+{
+    for ( std::vector< Card* >::iterator it = cards.begin(); it != cards.end(); ) {
+        if ( (*it) == card ) {
+            it = cards.erase( it );
+        } else {
+            ++it;
+        }
+    }
+    std::cout << "Playing " << card->getName() << std::endl;
+    battlefield->addCard( card );
+}
+
 std::vector< Card* > Zone::getCards()
 {
     return cards;
@@ -51,6 +64,10 @@ void Zone::shuffle()
 
 Card* Zone::takeTopCard()
 {
+    if ( cards.empty() == true ) {
+        return NULL;
+    }
+
     Card *card = cards.back();
     cards.pop_back();
     return card;

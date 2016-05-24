@@ -62,6 +62,16 @@ void Resources::play()
     }
 }
 
+bool Resources::playMana()
+{
+    Zone lands;
+    getHand()->getCardsByType( lands, CardInfo::LAND );
+    Card *landToPlay = lands.takeTopCard();
+    if ( landToPlay != NULL ) {
+        getHand()->playCard( landToPlay, getBattlefield() );
+    }
+}
+
 bool Resources::playTurn()
 {
     playedMana = false;
@@ -89,6 +99,7 @@ bool Resources::playTurn()
             break;
             case Steps::MAIN_PHASE_ONE:
                 // should we play mana?
+                playMana();
                 // should we play a spell?
                 break;
             case Steps::BEGIN_COMBAT:

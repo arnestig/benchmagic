@@ -26,8 +26,11 @@
 #include <iostream>
 #include "types.h"
 
+class Land;
+
 class Card
 {
+    friend class Land;
     public:
         Card( std::string name );
         ~Card();
@@ -50,10 +53,10 @@ class Card
         std::string manaCost;
 };
 
-class Land
+class Land : public Card
 {
     public:
-        Land( CardInfo::Mana manaType );
+        Land( std::string name, CardInfo::Mana manaType );
         ~Land();
 
     private:

@@ -24,7 +24,7 @@
 
 #include "../card.h"
 
-class Forest : public Card, public Land
+class Forest : public Land
 {
     public:
         Forest();

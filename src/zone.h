@@ -38,6 +38,7 @@ class Zone
         ~Zone();
 
         void addCard( Card* card );
+        void playCard( Card* card, Zone* battlefield );
         std::vector< Card* > getCards();
         void shuffle();
         Card* takeTopCard();

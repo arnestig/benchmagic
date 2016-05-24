@@ -21,7 +21,7 @@
 
 #include "forest.h"
 
-Forest::Forest() : Card( "Forest" ), Land( CardInfo::FOREST )
+Forest::Forest() : Land( "Forest", CardInfo::FOREST )
 {
 }
 

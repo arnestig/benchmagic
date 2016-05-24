@@ -55,6 +55,7 @@ class Resources
         Zone* getZoneByType( ZoneType::ZoneType zoneType );
         void evaluateCards();
         bool playTurn();
+        bool playMana();
 
         std::map< ZoneType::ZoneType, Zone* > zones;
         int currentTurn;

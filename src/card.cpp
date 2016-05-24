@@ -79,9 +79,11 @@ bool Card::untap()
     return ! (tapped = false);
 }
 
-Land::Land( CardInfo::Mana manaType )
-    :   manaType( manaType )
+Land::Land( std::string name, CardInfo::Mana manaType )
+    :   Card( name ),
+        manaType( manaType )
 {
+    cardType = static_cast< CardInfo::CardType >( cardType | CardInfo::LAND );
 }
 
 Land::~Land()
